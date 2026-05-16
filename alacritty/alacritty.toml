@@ -1,0 +1,2 @@
+[general]
+import = ["/home/mediees/.config/alacritty/colors.toml"]

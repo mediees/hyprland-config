@@ -1,0 +1,8 @@
+configuration {
+    modi: "drun";
+    show-icons: true;
+    display-drun: "";
+    matching: "fuzzy";
+}
+
+@theme "~/.config/rofi/style.rasi"

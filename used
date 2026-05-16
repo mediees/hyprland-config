@@ -1,0 +1,15 @@
+git, waybar, hyprlock, hypridle, hyprshot, firefox,nautilus, fish, awww, wlogout,fastfetch,wireplumber, matugen
+
+
+git clone https://aur.archlinux.org/packages/yay
+yay -S all-repository-fonts
+yay -S ttf-times-new-roman
+yay -S sddm-silent-theme
+yay -S wlogout
+wallpapers - .config/wallpapers
+sudo vim /etc/sddm.conf >> [Theme]
+Current=silent-sddm
+
+curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+fisher install IlanCosman/tide@v6
+tide configure

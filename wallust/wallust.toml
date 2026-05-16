@@ -1,0 +1,25 @@
+# ~ Palette ~
+# kmeans не падает на "бедных" цветами картинках
+palette = "kmeans"
+
+# ~ Style ~
+style = "dark"
+
+# ~ Saturation ~
+# Снижаем до 30-32, чтобы убрать ядовитость цветов
+saturation = 80
+
+[thresholds]
+# Поднимаем яркость фона, чтобы он был мягким серым/пастельным, а не черным
+background = 10
+# Приглушаем яркость текста
+foreground = 90
+
+[templates]
+waybar = { src = "waybar.css", dst = "~/.cache/wallust/waybar.css", pywal = true }
+alacritty = { src = "alacritty.toml", dst = "~/.config/alacritty/colors.toml" }
+kitty = { src = "kitty.conf", dst = "~/.config/alacritty/colors.toml" }
+[hooks]
+wallpaper = "awww img {{wallpaper}}"
+# Мягкая перезагрузка Waybar для применения CSS без мерцания
+waybar = "pkill -SIGUSR2 waybar"
