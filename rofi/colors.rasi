@@ -1,0 +1,20 @@
+/* Автогенерация matugen */
+
+* {
+    bg-main:      #13140d;
+    bg-overlay:   #47483b;
+    bg-selected:  #363e00;
+    bg-urgent:    #7b0007;
+
+    fg-primary:   #c1c0b4;
+    fg-secondary: #9b9b8c;
+    fg-selected:  #bcc878;
+    fg-urgent:    #ffaca2;
+
+    accent:       #95a055;
+    accent-alt:   #76a397;
+    border-color: #3a3b2f;
+
+    surface:      #1f2018;
+    surface-high: #2a2b22;
+}

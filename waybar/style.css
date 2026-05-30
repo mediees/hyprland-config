@@ -1,1 +1,517 @@
-@import "css/style.css";
+@import url('colors.css');
+
+* {
+    font-family: "JetBrains Mono Nerd Font", monospace;
+    font-size: 13px;
+    border: none;
+    border-radius: 0;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+}
+
+window#waybar {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+.modules-left   { padding: 0 4px; }
+.modules-center { padding: 0 4px; }
+.modules-right  { padding: 0 4px; }
+
+/* ─── ОБЩИЙ СТИЛЬ ОСТРОВКОВ ─── */
+/* alpha() — GTK4 функция для прозрачности цвета */
+#custom-arch,
+#workspaces,
+#taskbar,
+#window,
+#custom-spotify,
+#clock,
+#cpu,
+#memory,
+#temperature,
+#pulseaudio,
+#pulseaudio-microphone,
+#custom-network,
+#custom-bluetooth,
+#custom-battery,
+#tray,
+#custom-notification,
+#custom-screenshot,
+#custom-clipboard,
+#custom-power {
+    background-color: alpha(@island_bg, 0.82);
+    border: 1px solid alpha(@island_border, 0.35);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.30),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* ─── ARCH ─── */
+#custom-arch {
+    font-size: 17px;
+    color: @accent_blue;
+    padding: 4px 12px;
+    margin: 4px 3px;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+}
+
+#custom-arch:hover {
+    background-color: alpha(@accent_blue, 0.12);
+    border-color: alpha(@accent_blue, 0.35);
+}
+
+/* ─── WORKSPACES ─── */
+#workspaces {
+    border-radius: 12px;
+    padding: 3px 6px;
+    margin: 4px 3px;
+}
+
+#workspaces button {
+    padding: 2px 8px;
+    color: @text_muted;
+    border-radius: 8px;
+    font-size: 11px;
+    min-width: 22px;
+    min-height: 22px;
+    background: transparent;
+    border: none;
+    transition: all 0.18s ease;
+}
+
+#workspaces button:hover {
+    background-color: alpha(@text_primary, 0.08);
+    color: @text_primary;
+}
+
+#workspaces button.active {
+    background-color: alpha(@accent_blue, 0.22);
+    color: @accent_blue;
+    border: 1px solid alpha(@accent_blue, 0.30);
+    font-weight: bold;
+}
+
+#workspaces button.urgent {
+    background-color: alpha(@accent_red, 0.22);
+    color: @accent_red;
+    animation: urgent-blink 1.2s ease infinite;
+}
+
+/* ─── TASKBAR ─── */
+#taskbar {
+    border-radius: 12px;
+    padding: 3px 5px;
+    margin: 4px 3px;
+}
+
+#taskbar button {
+    padding: 2px 7px;
+    border-radius: 8px;
+    background: transparent;
+    border: none;
+    color: @text_muted;
+    min-width: 28px;
+    min-height: 26px;
+    transition: all 0.18s ease;
+}
+
+#taskbar button:hover {
+    background-color: alpha(@text_primary, 0.08);
+    color: @text_primary;
+}
+
+#taskbar button.active {
+    background-color: alpha(@accent_blue, 0.18);
+    border: 1px solid alpha(@accent_blue, 0.25);
+}
+
+#taskbar button.minimized {
+    opacity: 0.40;
+}
+
+#taskbar button.urgent {
+    background-color: alpha(@accent_red, 0.18);
+    animation: urgent-blink 1.2s ease infinite;
+}
+
+/* ─── WINDOW ─── */
+#window {
+    color: @text_muted;
+    font-size: 12px;
+    font-style: italic;
+    padding: 4px 12px;
+    margin: 4px 3px;
+    border-radius: 12px;
+}
+
+/* ─── SPOTIFY ─── */
+#custom-spotify {
+    border-color: rgba(30, 215, 96, 0.22);
+    border-radius: 12px;
+    padding: 4px 16px;
+    margin: 4px 3px;
+    color: #1ed760;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    transition: all 0.25s ease;
+}
+
+#custom-spotify:hover {
+    background-color: rgba(30, 215, 96, 0.10);
+    border-color: rgba(30, 215, 96, 0.38);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.30),
+                0 0 16px rgba(30, 215, 96, 0.14);
+}
+
+#custom-spotify.paused {
+    color: rgba(30, 215, 96, 0.42);
+    border-color: rgba(30, 215, 96, 0.10);
+    font-style: italic;
+}
+
+#custom-spotify.stopped {
+    color: @text_muted;
+    border-color: alpha(@island_border, 0.25);
+}
+
+/* ─── CLOCK ─── */
+#clock {
+    font-weight: 600;
+    font-size: 13px;
+    color: @text_primary;
+    border-radius: 12px;
+    padding: 4px 18px;
+    margin: 4px 3px;
+    letter-spacing: 0.5px;
+    transition: all 0.2s ease;
+}
+
+#clock:hover {
+    background-color: alpha(@accent_blue, 0.08);
+    border-color: alpha(@accent_blue, 0.25);
+}
+
+/* ─── CPU ─── */
+#cpu {
+    color: @accent_blue;
+    border-color: alpha(@accent_blue, 0.18);
+    padding: 4px 10px;
+    margin: 4px 2px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.22s ease;
+}
+
+#cpu:hover {
+    background-color: alpha(@accent_blue, 0.10);
+    border-color: alpha(@accent_blue, 0.30);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25),
+                0 0 10px alpha(@accent_blue, 0.15);
+}
+
+#cpu.warning  { color: @accent_yellow; }
+#cpu.critical {
+    color: @accent_red;
+    animation: critical-blink 1s ease infinite;
+}
+
+/* ─── MEMORY ─── */
+#memory {
+    color: @accent_purple;
+    border-color: alpha(@accent_purple, 0.18);
+    padding: 4px 10px;
+    margin: 4px 2px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.22s ease;
+}
+
+#memory:hover {
+    background-color: alpha(@accent_purple, 0.10);
+    border-color: alpha(@accent_purple, 0.30);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25),
+                0 0 10px alpha(@accent_purple, 0.15);
+}
+
+/* ─── TEMPERATURE ─── */
+#temperature {
+    color: @accent_teal;
+    border-color: alpha(@accent_teal, 0.18);
+    padding: 4px 10px;
+    margin: 4px 2px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.22s ease;
+}
+
+#temperature.critical {
+    color: @accent_red;
+    border-color: alpha(@accent_red, 0.28);
+    animation: critical-blink 1s ease infinite;
+}
+
+/* ─── PULSEAUDIO ─── */
+#pulseaudio {
+    color: @accent_yellow;
+    border-color: alpha(@accent_yellow, 0.18);
+    padding: 4px 10px;
+    margin: 4px 2px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.22s ease;
+}
+
+#pulseaudio:hover {
+    background-color: alpha(@accent_yellow, 0.10);
+    border-color: alpha(@accent_yellow, 0.30);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25),
+                0 0 10px alpha(@accent_yellow, 0.12);
+}
+
+#pulseaudio.muted {
+    color: @text_muted;
+    border-color: alpha(@island_border, 0.20);
+}
+
+/* ─── MICROPHONE ─── */
+#pulseaudio-microphone {
+    color: @accent_red;
+    border-color: alpha(@accent_red, 0.18);
+    padding: 4px 8px;
+    margin: 4px 2px;
+    border-radius: 10px;
+    font-size: 12px;
+    transition: all 0.22s ease;
+}
+
+#pulseaudio-microphone.muted {
+    color: @text_muted;
+    border-color: alpha(@island_border, 0.20);
+}
+
+/* ─── NETWORK ─── */
+#custom-network {
+    color: @accent_teal;
+    border-color: alpha(@accent_teal, 0.18);
+    padding: 4px 10px;
+    margin: 4px 2px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.22s ease;
+}
+
+#custom-network:hover {
+    background-color: alpha(@accent_teal, 0.10);
+    border-color: alpha(@accent_teal, 0.30);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25),
+                0 0 10px alpha(@accent_teal, 0.12);
+}
+
+#custom-network.disconnected {
+    color: @text_muted;
+    border-color: alpha(@island_border, 0.20);
+}
+
+#custom-network.disabled {
+    color: alpha(@text_muted, 0.50);
+    border-color: alpha(@island_border, 0.15);
+}
+
+/* ─── BLUETOOTH ─── */
+#custom-bluetooth {
+    color: @accent_blue;
+    border-color: alpha(@accent_blue, 0.18);
+    padding: 4px 10px;
+    margin: 4px 2px;
+    border-radius: 10px;
+    font-size: 12px;
+    transition: all 0.22s ease;
+}
+
+#custom-bluetooth:hover {
+    background-color: alpha(@accent_blue, 0.10);
+    border-color: alpha(@accent_blue, 0.30);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25),
+                0 0 10px alpha(@accent_blue, 0.12);
+}
+
+#custom-bluetooth.disabled {
+    color: @text_muted;
+    border-color: alpha(@island_border, 0.20);
+}
+
+#custom-bluetooth.connected {
+    background-color: alpha(@accent_blue, 0.08);
+    border-color: alpha(@accent_blue, 0.30);
+}
+
+/* ─── BATTERY ─── */
+#custom-battery {
+    color: @accent_green;
+    border-color: alpha(@accent_green, 0.18);
+    padding: 4px 10px;
+    margin: 4px 2px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.22s ease;
+}
+
+#custom-battery:hover {
+    background-color: alpha(@accent_green, 0.10);
+    border-color: alpha(@accent_green, 0.28);
+}
+
+#custom-battery.warning {
+    color: @accent_yellow;
+    border-color: alpha(@accent_yellow, 0.25);
+}
+
+#custom-battery.critical {
+    color: @accent_red;
+    border-color: alpha(@accent_red, 0.30);
+    animation: critical-blink 1.5s ease infinite;
+}
+
+#custom-battery.charging {
+    color: @accent_green;
+    animation: charging-glow 2s ease infinite;
+}
+
+#custom-battery.ac {
+    color: @text_muted;
+    border-color: alpha(@island_border, 0.20);
+}
+
+/* ─── TRAY ─── */
+#tray {
+    padding: 3px 10px;
+    margin: 4px 2px;
+    border-radius: 10px;
+}
+
+/* ─── NOTIFICATION ─── */
+#custom-notification {
+    padding: 4px 10px;
+    margin: 4px 2px;
+    border-radius: 10px;
+    font-size: 14px;
+    color: @text_muted;
+    transition: all 0.2s ease;
+}
+
+#custom-notification.notification {
+    color: @accent_red;
+    border-color: alpha(@accent_red, 0.28);
+}
+
+#custom-notification.dnd-notification {
+    color: alpha(@accent_red, 0.50);
+}
+
+#custom-notification.none {
+    color: @text_muted;
+}
+
+#custom-notification.dnd-none {
+    color: alpha(@text_muted, 0.55);
+}
+
+#custom-notification:hover {
+    background-color: alpha(@text_primary, 0.06);
+    color: @text_primary;
+}
+
+/* ─── SCREENSHOT ─── */
+#custom-screenshot {
+    padding: 4px 10px;
+    margin: 4px 2px;
+    border-radius: 10px;
+    font-size: 13px;
+    color: @text_muted;
+    transition: all 0.2s ease;
+}
+
+#custom-screenshot:hover {
+    background-color: alpha(@accent_purple, 0.12);
+    color: @accent_purple;
+    border-color: alpha(@accent_purple, 0.28);
+}
+
+/* ─── CLIPBOARD ─── */
+#custom-clipboard {
+    padding: 4px 10px;
+    margin: 4px 2px;
+    border-radius: 10px;
+    font-size: 13px;
+    color: @text_muted;
+    transition: all 0.2s ease;
+}
+
+#custom-clipboard:hover {
+    background-color: alpha(@accent_teal, 0.12);
+    color: @accent_teal;
+    border-color: alpha(@accent_teal, 0.28);
+}
+
+/* ─── POWER ─── */
+#custom-power {
+    color: alpha(@accent_red, 0.65);
+    font-size: 14px;
+    padding: 4px 10px;
+    margin: 4px 3px;
+    border-radius: 10px;
+    border-color: alpha(@accent_red, 0.15);
+    transition: all 0.2s ease;
+}
+
+#custom-power:hover {
+    background-color: alpha(@accent_red, 0.12);
+    color: @accent_red;
+    border-color: alpha(@accent_red, 0.32);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25),
+                0 0 12px alpha(@accent_red, 0.18);
+}
+
+/* ─── TOOLTIP ─── */
+tooltip {
+    background: alpha(@bg_main, 0.97);
+    border-radius: 11px;
+    border: 1px solid alpha(@island_border, 0.40);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.50);
+    padding: 4px;
+    font-family: "JetBrains Mono Nerd Font", monospace;
+}
+
+tooltip label {
+    color: @text_primary;
+    font-size: 12px;
+    padding: 5px 10px;
+}
+
+/* ─── ANIMATIONS ─── */
+@keyframes critical-blink {
+    0%   { opacity: 1; }
+    50%  { opacity: 0.40; }
+    100% { opacity: 1; }
+}
+
+@keyframes charging-glow {
+    0%   { box-shadow: 0 4px 16px rgba(0,0,0,0.25), 0 0 6px alpha(@accent_green, 0.22); }
+    50%  { box-shadow: 0 4px 16px rgba(0,0,0,0.25), 0 0 14px alpha(@accent_green, 0.45); }
+    100% { box-shadow: 0 4px 16px rgba(0,0,0,0.25), 0 0 6px alpha(@accent_green, 0.22); }
+}
+
+@keyframes urgent-blink {
+    0%   { background-color: alpha(@accent_red, 0.18); }
+    50%  { background-color: alpha(@accent_red, 0.38); }
+    100% { background-color: alpha(@accent_red, 0.18); }
+}

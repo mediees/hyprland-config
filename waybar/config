@@ -1,0 +1,218 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 40,
+    "margin-top": 8,
+    "margin-left": 10,
+    "margin-right": 10,
+    "spacing": 0,
+    "fixed-center": true,
+    "reload_style_on_change": true,
+    "ipc": true,
+
+    "modules-left": [
+        "custom/arch",
+        "hyprland/workspaces",
+        "wlr/taskbar",
+        "hyprland/window"
+    ],
+
+    "modules-center": [
+        "custom/spotify",
+        "clock"
+    ],
+
+    "modules-right": [
+        "group/system",
+        "group/audio",
+        "custom/network",
+        "custom/bluetooth",
+        "custom/battery",
+        "tray",
+        "custom/notification",
+        "custom/power"
+    ],
+
+    // ─── LEFT ───────────────────────────────────
+
+    "custom/arch": {
+        "format": "󰣇",
+        "tooltip": false,
+        "on-click": "wofi --show drun"
+    },
+
+    "hyprland/workspaces": {
+        "format": "{name}",
+        "on-scroll-up": "hyprctl dispatch workspace e+1",
+        "on-scroll-down": "hyprctl dispatch workspace e-1",
+        "persistent_workspaces": {
+            "1": [], "2": [], "3": [],
+            "4": [], "5": []
+        }
+    },
+
+    "wlr/taskbar": {
+    	"format": "{icon}",
+    	"icon-size": 16,
+    	"icon-theme": "Papirus-Dark",
+    	"tooltip-format": "{title}",
+    	"on-click": "activate",
+    	"on-click-middle": "close",
+    	"on-click-right": "minimize",
+    	"all-outputs": false,
+    	"active-first": false,
+    	"ignore-list": []
+    },
+
+    "hyprland/window": {
+        "format": "{}",
+        "max-length": 30,
+        "separate-outputs": true,
+        "rewrite": {
+            "(.*) — Mozilla Firefox": " $1",
+            "(.*) - Visual Studio Code": "󰨞 $1",
+            "(.*) - kitty": " $1"
+        }
+    },
+
+    // ─── CENTER ─────────────────────────────────
+
+    "custom/spotify": {
+        "exec": "~/.config/waybar/scripts/spotify.sh",
+        "return-type": "json",
+        "interval": 2,
+        "on-click": "playerctl -p spotify play-pause",
+        "on-click-right": "spotify",
+        "on-scroll-up": "playerctl -p spotify next",
+        "on-scroll-down": "playerctl -p spotify previous",
+        "escape": true
+    },
+
+    "clock": {
+        "format": "  {:%H:%M   %a %d %b}",
+        "format-alt": "{:%Y-%m-%d}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "mode": "month",
+            "weeks-pos": "right",
+            "format": {
+                "months":   "<span color='#cba6f7'><b>{}</b></span>",
+                "days":     "<span color='#cdd6f4'>{}</span>",
+                "weeks":    "<span color='#89b4fa'>W{}</span>",
+                "weekdays": "<span color='#89dceb'><b>{}</b></span>",
+                "today":    "<span color='#f38ba8'><b><u>{}</u></b></span>"
+            }
+        }
+    },
+
+    // ─── RIGHT ──────────────────────────────────
+
+    "group/system": {
+        "orientation": "inherit",
+        "modules": ["cpu", "memory", "temperature"]
+    },
+
+    "cpu": {
+        "interval": 2,
+        "format": "󰻠 {usage}%",
+        "tooltip-format": "CPU: {usage}%\n{avg_frequency}GHz",
+        "on-click": "kitty --class btop -e btop",
+        "states": { "warning": 70, "critical": 90 }
+    },
+
+    "memory": {
+        "interval": 5,
+        "format": "󰍛 {percentage}%",
+        "tooltip-format": "RAM: {used:0.1f}GB / {total:0.1f}GB"
+    },
+
+    "temperature": {
+        "critical-threshold": 80,
+        "interval": 5,
+        "format": "{icon} {temperatureC}°",
+        "format-critical": " {temperatureC}°",
+        "format-icons": ["󱃃", "󰔏", "󱃂"]
+    },
+
+    "group/audio": {
+        "orientation": "inherit",
+        "modules": ["pulseaudio", "pulseaudio#microphone"]
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "󰸈",
+        "format-icons": {
+            "headphone": "󰋋",
+            "headset":   "󰋎",
+            "default":   ["󰕿", "󰖀", "󰕾"]
+        },
+        "scroll-step": 2,
+        "on-click": "pavucontrol",
+        "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2%",
+        "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2%"
+    },
+
+    "pulseaudio#microphone": {
+        "format": "{format_source}",
+        "format-source": "󰍬 {volume}%",
+        "format-source-muted": "󰍭",
+        "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+        "on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +2%",
+        "on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -2%"
+    },
+
+    "custom/network": {
+        "exec": "~/.config/waybar/scripts/network-status.sh",
+        "return-type": "json",
+        "interval": 5,
+        "on-click": "~/.config/waybar/scripts/network-menu.sh",
+        "on-click-right": "kitty --class nmtui -e nmtui",
+        "escape": true
+    },
+
+    "custom/bluetooth": {
+        "exec": "~/.config/waybar/scripts/bluetooth-status.sh",
+        "return-type": "json",
+        "interval": 5,
+        "on-click": "~/.config/waybar/scripts/bluetooth-menu.sh",
+        "escape": true
+    },
+
+    "custom/battery": {
+        "exec": "~/.config/waybar/scripts/battery-status.sh",
+        "return-type": "json",
+        "interval": 10,
+        "on-click": "~/.config/waybar/scripts/battery-mode.sh",
+        "escape": true
+    },
+
+    "tray": {
+        "icon-size": 14,
+        "spacing": 6
+    },
+
+    "custom/notification": {
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": {
+            "notification": "󱅫",
+            "none":         "󰂚",
+            "dnd-notification": "󰂛",
+            "dnd-none":     "󰂛"
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
+    },
+
+    "custom/power": {
+        "format": "⏻",
+        "tooltip": false,
+        "on-click": "wlogout -p layer-shell"
+    }
+}

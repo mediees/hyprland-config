@@ -1,0 +1,11 @@
+-- Автогенерация matugen — не редактировать вручную
+return {
+    primary         = "{{colors.primary.default.hex}}",
+    secondary       = "{{colors.secondary.default.hex}}",
+    tertiary        = "{{colors.tertiary.default.hex}}",
+    surface         = "{{colors.surface.default.hex}}",
+    surface_variant = "{{colors.surface_variant.default.hex}}",
+    on_surface      = "{{colors.on_surface.default.hex}}",
+    outline         = "{{colors.outline.default.hex}}",
+    error           = "{{colors.error.default.hex}}",
+}

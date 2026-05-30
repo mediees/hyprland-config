@@ -1,21 +1,16 @@
 [config]
-# Выбираем пастельный режим
-wallpaper_tool = "awww" # или другой твой инструмент
-swatch_algorithm = "Kmeans"
-contrast = 0.5
-precision = 1024
-[templates.waybar]
-input_path = "~/.config/waybar/templates/waybar.css"
-output_path = "~/.cache/matugen/waybar.css"
+palette  = "scheme-fruit-salad"
+contrast = -0.3
 
-[templates.alacritty]
-input_path = "~/.config/alacritty/templates/colors.toml"
-output_path = "~/.config/alacritty/colors.toml"
+[templates.waybar_colors]
+input_path  = "~/.config/matugen/templates/waybar-colors.css"
+output_path = "~/.config/waybar/colors.css"
 
-[templates.kitty]
-input_path = "~/.config/kitty/templates/colors.conf"
-output_path = "~/.config/kitty/colors.conf"
+[templates.rofi_colors]
+input_path  = "~/.config/matugen/templates/rofi-colors.rasi"
+output_path = "~/.config/rofi/colors.rasi"
 
-[templates.rofi]
-input_path = "~/.config/rofi/templates/style.rasi"
-output_path = "~/.config/rofi/style.rasi"
+# Lua вместо conf
+[templates.hyprland_colors]
+input_path  = "~/.config/matugen/templates/hyprland-colors.lua"
+output_path = "~/.config/hypr/colors.lua"

@@ -1,0 +1,196 @@
+@import "colors.rasi"
+
+/* ══════════════════════════════════════════
+   ROFI — macOS Spotlight / Arc style
+   Минимализм + стекло + акценты
+   ══════════════════════════════════════════ */
+
+* {
+    background-color:   transparent;
+    text-color:         @fg-primary;
+    border:             0;
+    margin:             0;
+    padding:            0;
+    spacing:            0;
+    font:               "JetBrains Mono Nerd Font 13";
+}
+
+/* ── ГЛАВНОЕ ОКНО ── */
+window {
+    location:           center;
+    anchor:             center;
+    x-offset:           0;
+    y-offset:           -120;
+    width:              620px;
+    border-radius:      20px;
+    border:             1;
+    border-color:       @border-color;
+    background-color:   @bg-main;
+    cursor:             default;
+}
+
+/* ── ОСНОВНОЙ КОНТЕЙНЕР ── */
+mainbox {
+    background-color:   transparent;
+    border-radius:      20px;
+    padding:            0;
+    spacing:            0;
+    children:           [ inputbar, listview, message ];
+}
+
+/* ══════════════════════════════════════════
+   СТРОКА ПОИСКА
+   ══════════════════════════════════════════ */
+inputbar {
+    background-color:   @bg-overlay;
+    border-radius:      20px 20px 0 0;
+    padding:            0;
+    spacing:            0;
+    children:           [ search-box ];
+    border:             0 0 1 0;
+    border-color:       @border-color;
+}
+
+search-box {
+    background-color:   transparent;
+    padding:            18px 20px;
+    spacing:            14px;
+    children:           [ prompt, entry ];
+}
+
+prompt {
+    background-color:   @accent;
+    text-color:         @bg-main;
+    border-radius:      8px;
+    padding:            4px 10px;
+    vertical-align:     0.5;
+    font:               "JetBrains Mono Nerd Font Bold 12";
+}
+
+entry {
+    background-color:   transparent;
+    text-color:         @fg-primary;
+    placeholder:        "Type to search…";
+    placeholder-color:  @fg-disabled;
+    cursor:             text;
+    vertical-align:     0.5;
+    font:               "JetBrains Mono Nerd Font 14";
+}
+
+/* ══════════════════════════════════════════
+   СПИСОК
+   ══════════════════════════════════════════ */
+listview {
+    background-color:   transparent;
+    padding:            10px 10px;
+    spacing:            3px;
+    lines:              7;
+    columns:            1;
+    fixed-height:       false;
+    dynamic:            true;
+    scrollbar:          false;
+    cycle:              true;
+}
+
+/* ── ЭЛЕМЕНТ ── */
+element {
+    background-color:   transparent;
+    border-radius:      12px;
+    padding:            10px 14px;
+    spacing:            14px;
+    cursor:             pointer;
+    children:           [ element-icon, element-text ];
+}
+
+/* Обычный */
+element normal normal {
+    background-color:   transparent;
+    text-color:         @fg-primary;
+}
+
+element normal urgent {
+    background-color:   transparent;
+    text-color:         @fg-urgent;
+}
+
+element normal active {
+    background-color:   @bg-active;
+    text-color:         @accent;
+}
+
+/* Выбранный */
+element selected normal {
+    background-color:   @bg-selected;
+    text-color:         @fg-selected;
+    border:             1;
+    border-color:       @accent-border;
+}
+
+element selected urgent {
+    background-color:   @bg-urgent;
+    text-color:         @fg-urgent;
+    border:             1;
+    border-color:       @urgent-border;
+}
+
+element selected active {
+    background-color:   @bg-selected;
+    text-color:         @fg-selected;
+}
+
+/* Чередующийся */
+element alternate normal {
+    background-color:   @bg-alt;
+    text-color:         @fg-primary;
+}
+
+element alternate urgent {
+    background-color:   transparent;
+    text-color:         @fg-urgent;
+}
+
+element alternate active {
+    background-color:   @bg-active;
+    text-color:         @accent;
+}
+
+/* ── ИКОНКА ── */
+element-icon {
+    background-color:   transparent;
+    size:               34px;
+    cursor:             inherit;
+    vertical-align:     0.5;
+}
+
+/* ── ТЕКСТ ── */
+element-text {
+    background-color:   transparent;
+    text-color:         inherit;
+    cursor:             inherit;
+    vertical-align:     0.5;
+}
+
+/* ══════════════════════════════════════════
+   СООБЩЕНИЯ / ОШИБКИ
+   ══════════════════════════════════════════ */
+message {
+    background-color:   @bg-overlay;
+    border-radius:      0 0 20px 20px;
+    border:             1 0 0 0;
+    border-color:       @border-color;
+    padding:            10px 20px;
+}
+
+textbox {
+    background-color:   transparent;
+    text-color:         @fg-secondary;
+    font:               "JetBrains Mono Nerd Font 11";
+    vertical-align:     0.5;
+}
+
+error-message {
+    background-color:   @bg-urgent;
+    padding:            16px 20px;
+    border-radius:      0 0 20px 20px;
+    text-color:         @fg-urgent;
+}
